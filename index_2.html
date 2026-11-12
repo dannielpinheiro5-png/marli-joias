@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--HEAD-START-->
+<title>Marli Joias</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Você pode estar perdendo dinheiro. Compro suas joias, mesmo quebradas. Avaliação gratuita, pago à vista e vou até você.">
+<meta name="theme-color" content="#efe5dc">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icone-192.png">
+<link rel="apple-touch-icon" href="icone-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Marli Joias">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: app vertical de rolagem cinematográfica. Abertura com o nome, 5 capítulos em palco fixo (os quadros do vídeo avançam com a rolagem e a frase entra palavra por palavra) e o final em que a mão da Marli segura o botão do WhatsApp. Visual único e claro por escolha: nude, marrom e o vermelho do esmalte. */
+:root{
+  --nude:#efe5dc; --nude-2:#dac9b9;--fim-bg:#c8b5a4; --papel:#faf6f1; --marrom:#483628; --marrom-2:#7a6656;
+  --esmalte:#c8231b; --zap:#1f9e55;
+  --f-display:"Italiana", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--nude)}
+body{margin:0;background:var(--nude);color:var(--marrom);font-family:var(--f-body);font-weight:300;font-size:16px;line-height:1.55;overscroll-behavior-y:none}
+h1,h2,p{margin:0}
+h1,h2{font-family:var(--f-display);font-weight:400;line-height:1.04;text-wrap:balance}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--esmalte);outline-offset:3px}
+.app{max-width:520px;margin:0 auto;position:relative;background:var(--nude)}
+.gut{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.ey{font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--marrom-2)}
+
+/* Abertura */
+.intro{height:100svh;min-height:560px;display:grid;align-content:center;justify-items:center;text-align:center;gap:18px;position:relative}
+.intro .ey{opacity:0;animation:fade 1.4s .3s ease forwards}
+.marca{font-family:var(--f-display);font-size:clamp(54px,16vw,86px);line-height:1;color:var(--marrom);display:flex;gap:.02em}
+.marca span{display:inline-block;opacity:0;transform:translateY(.25em);animation:letra 1.3s cubic-bezier(.2,.7,.2,1) forwards}
+.marca .sp{width:.28em}
+.filete{width:0;height:1px;background:var(--esmalte);animation:filete 1.6s 1.4s cubic-bezier(.6,0,.2,1) forwards}
+.desca{position:absolute;bottom:calc(34px + env(safe-area-inset-bottom,0px));left:0;right:0;display:grid;justify-items:center;gap:12px;opacity:0;animation:fade 1s 2.4s ease forwards}
+.desca i{display:block;width:1px;height:46px;background:linear-gradient(var(--marrom-2),transparent);transform-origin:top;animation:linha 2.4s 2.8s ease-in-out infinite}
+@keyframes letra{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes filete{to{width:64px}}
+@keyframes linha{0%{transform:scaleY(0);opacity:1}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* Capítulos */
+.cap{height:320svh;position:relative}
+.palco{position:sticky;top:0;height:100svh;min-height:560px;overflow:hidden;background:var(--nude-2)}
+.palco canvas,.palco .capa{position:absolute;inset:0;width:100%;height:100%;display:block}
+.palco .capa{object-fit:cover}
+.veu{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(239,229,220,.96) 0%,rgba(239,229,220,.82) 20%,rgba(239,229,220,0) 46%),linear-gradient(0deg,rgba(72,54,40,.18),transparent 22%)}
+.texto{position:absolute;left:0;right:0;top:0;padding-top:calc(env(safe-area-inset-top,0px) + 54px);display:grid;gap:14px}
+.num{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);right:max(24px,env(safe-area-inset-right,0px));font-size:11px;letter-spacing:.28em;color:var(--marrom-2);font-variant-numeric:lining-nums tabular-nums}
+.num b{font-weight:500;color:var(--marrom)}
+.marca-p{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);left:max(24px,env(safe-area-inset-left,0px));font-family:var(--f-display);font-size:17px;letter-spacing:.04em}
+.frase{font-size:clamp(36px,10.5vw,52px);color:var(--marrom);max-width:12ch}
+.frase .w{display:inline-block;opacity:0;will-change:transform,opacity}
+.sub{font-size:16.5px;line-height:1.5;color:var(--marrom);max-width:30ch;opacity:0;will-change:transform,opacity}
+.barra{position:absolute;left:max(24px,env(safe-area-inset-left,0px));right:max(24px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 22px);height:1px;background:rgba(250,246,241,.45)}
+.barra i{display:block;height:100%;width:100%;background:var(--papel);transform-origin:left;transform:scaleX(0)}
+
+/* Final: vídeo da mão puxando o botão, guiado pela rolagem */
+.fim{height:360svh;position:relative;background:var(--fim-bg)}
+.fim .palco{background:var(--fim-bg)}
+.fim .texto{text-align:left;z-index:2}
+.veu-fim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(239,229,220,.78) 0%,rgba(239,229,220,.5) 16%,rgba(239,229,220,0) 32%)}
+.fim-final{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.fim-link{position:absolute;display:block;border-radius:14px;opacity:0;pointer-events:none;-webkit-tap-highlight-color:transparent;transition:box-shadow .25s,transform .25s}
+.fim-link.on{pointer-events:auto}
+.fim-link:active{transform:scale(.98);box-shadow:0 0 0 3px rgba(255,255,255,.55)}
+.fim-link:focus-visible{outline:2px solid var(--marrom);outline-offset:4px;opacity:1}
+.cta{display:flex;align-items:center;gap:12px;min-height:78px;padding:16px 18px;border-radius:16px;background:var(--papel);color:var(--marrom);text-decoration:none;box-shadow:0 calc(18px + var(--lift,0)*14px) calc(40px + var(--lift,0)*20px) rgba(72,54,40,calc(.18 + var(--lift,0)*.06)),0 2px 6px rgba(72,54,40,.12);transition:padding .3s;font-size:15px;font-weight:500;line-height:1.25}
+.cta svg{flex:0 0 auto;width:30px;height:30px;color:var(--zap)}
+.cta small{display:block;font-weight:300;font-size:12.5px;color:var(--marrom-2);margin-top:2px}
+.rodape{background:var(--fim-bg);padding-block:12px calc(44px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;justify-items:start}
+.rodape .nome{font-family:var(--f-display);font-size:30px}
+.rodape b{font-weight:400;font-size:20px;font-variant-numeric:lining-nums;user-select:all}
+.copy{font-size:11px;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;padding:4px 0;cursor:pointer;color:var(--marrom)}
+.zap-btn{display:inline-flex;align-items:center;gap:10px;background:var(--marrom);color:var(--papel);text-decoration:none;border-radius:999px;padding:13px 20px;font-weight:500;font-size:14.5px;margin-top:6px}
+.zap-btn svg{width:20px;height:20px}
+
+/* WhatsApp flutuante */
+.fab{position:fixed;z-index:20;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:var(--papel);color:var(--zap);display:grid;place-items:center;box-shadow:0 10px 26px rgba(72,54,40,.22);transition:opacity .5s,transform .5s;opacity:0;transform:translateY(14px);pointer-events:none}
+.fab svg{width:28px;height:28px}
+.fab.on{opacity:1;transform:none;pointer-events:auto}
+@media (min-width:560px){.fab{right:calc(50% - 260px + 18px)}}
+
+/* Aviso de privacidade (só quando a medição estiver ligada) */
+.lgpd{position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));width:min(92%,480px);background:var(--papel);border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:center;font-size:13px;box-shadow:0 10px 30px rgba(72,54,40,.18)}
+.lgpd[hidden],[hidden]{display:none!important}
+.lgpd button{border:0;background:var(--marrom);color:var(--papel);border-radius:999px;padding:8px 14px;font-weight:500;cursor:pointer;flex:0 0 auto}
+
+@media (prefers-reduced-motion:reduce){
+  .marca span,.intro .ey,.desca,.filete{animation:none;opacity:1;transform:none;width:64px}
+  .desca i{animation:none}
+}
+</style>
+<!--HEAD-END-->
+</head>
+<body>
+<!--BODY-START-->
+<div class="app" id="app">
+  <header class="intro gut" aria-label="Marli Joias">
+    <span class="ey">Compra de ouro</span>
+    <h1 class="marca" id="marca" aria-label="Marli Joias"></h1>
+    <span class="filete" aria-hidden="true"></span>
+    <div class="desca" aria-hidden="true"><span class="ey">Role devagar</span><i></i></div>
+  </header>
+
+  <main id="caps"></main>
+
+  <section class="fim" id="fim" aria-label="Agende seu horário">
+    <div class="palco">
+      <div class="texto gut">
+        <h2 class="frase" data-frase>Agende seu horário.</h2>
+        <p class="sub">Uma conversa rápida pelo WhatsApp e a avaliação fica marcada.</p>
+      </div>
+      <img class="capa" id="fimCapa" src="fim-capa.webp" alt="" aria-hidden="true">
+      <canvas id="fimCv" aria-hidden="true"></canvas>
+      <img class="fim-final" id="fimFinal" src="fim-final.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="veu-fim" id="veuFim"></div>
+      <a class="fim-link" id="fimLink" data-zap href="#" target="_blank" rel="noopener" aria-label="Agende uma avaliação gratuita comigo pelo WhatsApp, (16) 98209-1578"></a>
+    </div>
+  </section>
+  <footer class="rodape gut">
+    <span class="nome">Marli Joias</span>
+    <span class="ey">Contato somente pelo WhatsApp</span>
+    <b id="fone">(16) 98209-1578</b>
+    <button class="copy" type="button" id="copiar">Copiar número</button>
+    <a class="zap-btn" data-zap href="#" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1a12.7 12.7 0 0 0 6.1 1.6c7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.2c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.2 1.2-4-.3-.4a10.4 10.4 0 0 1-1.7-5.6C5.2 9.8 10 5.2 16 5.2s10.8 4.7 10.8 10.5S22 26.2 16 26.2Zm5.9-7.8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.4Z"/></svg> Agende uma avaliação gratuita comigo</a>
+  </footer>
+</div>
+
+<a class="fab" id="fab" data-zap href="#" target="_blank" rel="noopener" aria-label="Falar com a Marli no WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1a12.7 12.7 0 0 0 6.1 1.6c7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.2c-2 0-3.9-.6-5.5-1.6l-.4-.2-4.1 1.2 1.2-4-.3-.4a10.4 10.4 0 0 1-1.7-5.6C5.2 9.8 10 5.2 16 5.2s10.8 4.7 10.8 10.5S22 26.2 16 26.2Zm5.9-7.8c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.4Z"/></svg></a>
+<div class="lgpd" id="lgpd" hidden><span>Usamos cookies só para contar as visitas a este app.</span><button type="button" id="lgpdOk">Entendi</button></div>
+
+<script>
+/* ===== Configuração ===== */
+const WHATS="5516982091578";
+const MSG="Olá, Marli! Gostaria de agendar uma avaliação gratuita.";
+const GA_ID="G-TD0RG46Z5P"; // contador de leads (Google Analytics)
+const CAPS=[
+ {frase:"Você pode estar perdendo dinheiro.",sub:"Aquela joia esquecida na gaveta ainda guarda valor."},
+ {frase:"Compro suas joias, mesmo quebradas.",sub:"Corrente partida, brinco sem par, anel que não serve mais."},
+ {frase:"Avaliação gratuita.",sub:"Cada peça é olhada de perto, com calma e cuidado."},
+ {frase:"Pago à vista.",sub:"Negócio fechado com a mesma delicadeza do começo."},
+ {frase:"Vou até você.",sub:"Você escolhe o melhor horário. Eu levo a avaliação até a sua casa.",foto:true,fim:true}
+];
+const FRAMES=72,PER=12,COLS=3;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ===== Medição ===== */
+function track(ev,params){try{if(window.gtag)gtag("event",ev,params||{})}catch(e){}}
+if(GA_ID&&!/claude|claudeusercontent/.test(location.hostname)){
+  const s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+GA_ID;document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",GA_ID);
+  let ok=false;try{ok=localStorage.getItem("lgpd-ok")==="1"}catch(e){}
+  if(!ok){const b=document.getElementById("lgpd");b.hidden=false;document.getElementById("lgpdOk").onclick=()=>{b.hidden=true;try{localStorage.setItem("lgpd-ok","1")}catch(e){}}}
+}
+const zapURL="https://wa.me/"+WHATS+"?text="+encodeURIComponent(MSG);
+document.querySelectorAll("[data-zap]").forEach(a=>{a.href=zapURL;a.addEventListener("click",()=>track("clique_whatsapp",{local:a.id||a.className}))});
+
+/* ===== Abertura: letras do nome ===== */
+const marca=document.getElementById("marca");
+[..."Marli Joias"].forEach((ch,i)=>{const s=document.createElement("span");if(ch===" ")s.className="sp";else s.textContent=ch;s.setAttribute("aria-hidden","true");s.style.animationDelay=(0.35+i*0.07)+"s";marca.appendChild(s)});
+
+/* ===== Capítulos ===== */
+const caps=document.getElementById("caps");
+const split=t=>t.split(" ").map(w=>`<span class="w">${w}</span>`).join(" ");
+CAPS.forEach((c,i)=>{
+  const n=i+1;
+  caps.insertAdjacentHTML("beforeend",`<section class="cap" id="cap${n}" aria-label="${c.frase}">
+    <div class="palco"><img class="capa" src="cena${n}-capa.webp" alt="" aria-hidden="true"><canvas aria-hidden="true"></canvas><div class="veu"></div>
+      <span class="marca-p">Marli Joias</span><span class="num"><b>0${n}</b> / 05</span>
+      <div class="texto gut"><h2 class="frase" data-frase>${split(c.frase)}</h2><p class="sub">${c.sub}</p></div>
+      <div class="barra"><i></i></div></div></section>`);
+});
+const fimFrase=document.querySelector("#fim [data-frase]");fimFrase.innerHTML=split(fimFrase.textContent);
+
+const chapters=[...document.querySelectorAll(".cap")].map((el,i)=>({el,n:i+1,canvas:el.querySelector("canvas"),capa:el.querySelector(".capa"),words:[...el.querySelectorAll(".w")],sub:el.querySelector(".sub"),bar:el.querySelector(".barra i"),sheets:new Array(FRAMES/PER).fill(null),loaded:false,last:-1,foto:!!CAPS[i].foto,fim:!!CAPS[i].fim,img:null,img2:null}));
+
+function load(ch){if(ch.loaded)return;ch.loaded=true;
+  if(ch.foto){const im=new Image();im.decoding="async";im.onload=()=>{ch.img=im;ch.last=-1;tick()};im.src=`cena${ch.n}-foto.webp`;if(ch.fim){const i2=new Image();i2.decoding="async";i2.onload=()=>{ch.img2=i2;ch.last=-1;tick()};i2.src=`cena${ch.n}-fim.webp`}return}
+  for(let s=0;s<ch.sheets.length;s++){const im=new Image();im.decoding="async";im.onload=()=>{(im.decode?im.decode():Promise.resolve()).catch(()=>{}).then(()=>{ch.sheets[s]=im;ch.last=-1;tick()})};im.src=`cena${ch.n}-${s+1}.webp`}}
+function unload(ch){if(!ch.loaded)return;ch.loaded=false;ch.img=null;ch.img2=null;ch.sheets=ch.sheets.map(()=>null);ch.last=-1;ch.capa.style.opacity=1}
+
+function fit(cv){const d=Math.min(devicePixelRatio||1,2),w=cv.clientWidth,h=cv.clientHeight;if(cv.width!==Math.round(w*d)||cv.height!==Math.round(h*d)){cv.width=Math.round(w*d);cv.height=Math.round(h*d);return true}return false}
+function drawFoto(ch,p){
+  const cv=ch.canvas;fit(cv);const im=ch.img;if(!im)return;
+  const key=Math.round(p*400);if(key===ch.last&&cv.dataset.w==cv.width)return;ch.last=key;cv.dataset.w=cv.width;
+  const g=cv.getContext("2d"),W=cv.width,H=cv.height,iw=im.naturalWidth,ih=im.naturalHeight;
+  const z=1.02+0.1*ease(p),sc=Math.max(W/iw,H/ih)*z,dw=iw*sc,dh=ih*sc;
+  const dx=(W-dw)/2,dy=(H-dh)/2+(0.5-p)*H*0.04;
+  g.globalAlpha=1;g.drawImage(im,dx,dy,dw,dh);
+  if(ch.img2){const t=ease(clamp((p-0.3)/0.4));if(t>0){g.globalAlpha=t;g.drawImage(ch.img2,dx,dy,dw,dh);g.globalAlpha=1}}
+  ch.capa.style.opacity=0;
+}
+function draw(ch,f){
+  const cv=ch.canvas,resized=fit(cv);
+  let s=Math.floor(f/PER),k=f%PER;
+  if(!ch.sheets[s]){ // usa a folha carregada mais próxima
+    let best=-1;for(let j=0;j<ch.sheets.length;j++)if(ch.sheets[j]&&(best<0||Math.abs(j-s)<Math.abs(best-s)))best=j;
+    if(best<0)return;k=best<s?PER-1:0;s=best;f=s*PER+k}
+  if(f===ch.last&&!resized)return;ch.last=f;
+  const im=ch.sheets[s],cw=im.naturalWidth/COLS,chh=im.naturalHeight/(PER/COLS);
+  const sx=(k%COLS)*cw,sy=Math.floor(k/COLS)*chh;
+  const g=cv.getContext("2d"),W=cv.width,H=cv.height,sc=Math.max(W/cw,H/chh),dw=cw*sc,dh=chh*sc;
+  g.drawImage(im,sx,sy,cw,chh,(W-dw)/2,(H-dh)/2,dw,dh);
+  ch.capa.style.opacity=0;
+}
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease=x=>1-Math.pow(1-x,3);
+const LERP=0.45;
+/* Padrão de ritmo: entrada = título; 0–15% segura o 1º quadro (subtítulo); 15–85% vídeo; 85–100% segura e sai */
+function enterOf(el){const r=el.getBoundingClientRect();return clamp(1-r.top/innerHeight)}
+function progress(el){const r=el.getBoundingClientRect(),vh=innerHeight;return clamp(-r.top/(r.height-vh))}
+function wordsIn(words,en,out){
+  words.forEach((w,i)=>{const t=ease(clamp((en-0.3-i*0.07)/0.38));const o=t*(1-out);
+    w.style.opacity=o;w.style.transform=`translateY(${(1-t)*0.35-out*0.15}em)`;w.style.filter=t<1?`blur(${(1-t)*3}px)`:"none"});
+}
+function textAnim(ch,en,p){
+  const out=ease(clamp((p-0.88)/0.1));
+  wordsIn(ch.words,en,out);
+  const ts=ease(clamp((p+0.04)/0.14))*(en>=0.98?1:0);
+  ch.sub.style.opacity=ts*(1-out);ch.sub.style.transform=`translateY(${(1-ts)*10}px)`;
+}
+const fab=document.getElementById("fab"),fim=document.getElementById("fim"),fimFinal=document.getElementById("fimFinal"),veuFim=document.getElementById("veuFim"),fimLink=document.getElementById("fimLink");
+const FIM={canvas:document.getElementById("fimCv"),capa:document.getElementById("fimCapa"),sheets:new Array(10).fill(null),loaded:false,last:-1,cur:0,init:false};
+const FIM_N=120,CARD={x:150,y:607,w:421,h:148},VID={w:720,h:1280};
+function loadFim(){if(FIM.loaded)return;FIM.loaded=true;for(let s=0;s<FIM.sheets.length;s++){const im=new Image();im.decoding="async";im.onload=()=>{(im.decode?im.decode():Promise.resolve()).catch(()=>{}).then(()=>{FIM.sheets[s]=im;FIM.last=-1;tick()})};im.src=`fim-${s+1}.webp`}}
+function placeLink(){const W=innerWidth,H=FIM.canvas.clientHeight||innerHeight,sc=Math.max(W/VID.w,H/VID.h),ox=(W-VID.w*sc)/2,oy=(H-VID.h*sc)/2;
+  Object.assign(fimLink.style,{left:(ox+CARD.x*sc-6)+"px",top:(oy+CARD.y*sc-6)+"px",width:(CARD.w*sc+12)+"px",height:(CARD.h*sc+12)+"px"})}
+const fimWords=[...fim.querySelectorAll(".w")],fimSub=fim.querySelector(".sub");
+let fimTracked=false,queued=false,fimCur={up:0,rel:0},fimInit=false;
+chapters.forEach(c=>{c.cur=0;c.init=false});
+function easeIO(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+function smooth(cur,target){const d=target-cur;return Math.abs(d)<0.004?target:cur+d*LERP}
+function tick(){queued=false;let moving=false;
+  const vh=innerHeight;let active=0;
+  chapters.forEach((ch,i)=>{const r=ch.el.getBoundingClientRect();if(r.top<vh*0.5&&r.bottom>vh*0.5)active=i;});
+  chapters.forEach((ch,i)=>{
+    const r=ch.el.getBoundingClientRect();
+    const near=r.bottom>-vh*2const near=r.bottom>-vh*1.5&&r.top<vh*2.5;const near=r.bottom>-vh*1.5&&r.top<vh*2.5;r.top<vh*4;
+    if(near)load(ch);else if(Math.abs(i-active)>2)unload(ch);
+    if(r.bottom<0||r.top>vh){ch.init=false;return}
+    const p=reduce?0.5:progress(ch.el),en=reduce?1:enterOf(ch.el);
+    const target=reduce?0.5:clamp((p-0.15)/0.7);
+    if(!ch.init||reduce){ch.cur=target;ch.init=true}else{ch.cur=smooth(ch.cur,target);if(ch.cur!==target)moving=true}
+    if(ch.foto)drawFoto(ch,ch.cur);else draw(ch,Math.round(ch.cur*(FRAMES-1)));
+    textAnim(ch,en,reduce?0.4:p);ch.bar.style.transform=`scaleX(${p})`;
+  });
+  // final: o vídeo da mão puxando o botão avança com a rolagem; no fim fica só o botão
+  const rf=fim.getBoundingClientRect();
+  if(rf.top<vh*7&&rf.bottom>-vh)loadFim();
+  if(rf.top<vh&&rf.bottom>0){
+    const pf=reduce?1:progress(fim),enF=reduce?1:enterOf(fim);
+    const target=reduce?1:clamp((pf-0.1)/0.78);
+    if(!FIM.init||reduce){FIM.cur=target;FIM.init=true}else{FIM.cur=smooth(FIM.cur,target);if(FIM.cur!==target)moving=true}
+    draw(FIM,Math.round(FIM.cur*(FIM_N-1)));
+    const fin=clamp((FIM.cur-0.965)/0.035);fimFinal.style.opacity=fin;veuFim.style.opacity=1-clamp((FIM.cur-0.76)/0.14);
+    placeLink();fimLink.classList.toggle("on",fin>0.6);
+    wordsIn(fimWords,enF,0);
+    fimSub.style.opacity=ease(clamp((pf+0.02)/0.14))*(enF>=0.98?1:0);
+    if(pf>0.5&&!fimTracked){fimTracked=true;track("chegou_ao_fim")}
+  }else FIM.init=false;
+  const introGone=scrollY>vh*0.6,inFim=rf.top<vh*0.9;
+  fab.classList.toggle("on",introGone&&!inFim);
+  if(moving&&!queued){queued=true;requestAnimationFrame(tick)}
+}
+addEventListener("scroll",()=>{if(!queued){queued=true;requestAnimationFrame(tick)}},{passive:true});
+addEventListener("resize",()=>{chapters.forEach(c=>c.last=-1);FIM.last=-1;tick()});
+load(chapters[0]);tick();
+
+document.getElementById("copiar").onclick=async e=>{const b=e.currentTarget;
+  try{await navigator.clipboard.writeText("16982091578");b.textContent="Número copiado"}
+  catch(err){const r=document.createRange();r.selectNodeContents(document.getElementById("fone"));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Número selecionado"}
+  setTimeout(()=>b.textContent="Copiar número",2400)};
+
+if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")&&!/claude/.test(location.hostname)){try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}}
+</script>
+<!--BODY-END-->
+</body>
+</html>
